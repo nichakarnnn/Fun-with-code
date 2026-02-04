@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Fun-with-code
 =======
 # Discovery-Piscine-Web
