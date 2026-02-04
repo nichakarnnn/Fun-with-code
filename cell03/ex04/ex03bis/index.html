@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To Do List - jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        #ft_list div {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="ft_list"></div>
+    <button id="newBtn">New</button>
+
+    <script>
+        $(document).ready(function() {
+            loadFromCookies();
+
+            $('#newBtn').click(function() {
+                const task = prompt("เพิ่มรายการใหม่ของคุณ:");
+                if (task && task.trim() !== "") {
+                    addToDom(task);
+                    saveToCookies();
+                }
+            });
+
+            function addToDom(text) {
+                const $item = $('<div>' + text + '</div>');
+
+                $item.click(function() {
+                    if (confirm("คุณต้องการลบรายการ '" + text + "' ใช่ไหม?")) {
+                        $(this).remove();
+                        saveToCookies();
+                    }
+                });
+
+                $('#ft_list').prepend($item);
+            }
+
+            function saveToCookies() {
+                let tasks = [];
+                $('#ft_list div').each(function() {
+                    tasks.push($(this).text());
+                });
+                const d = new Date();
+                d.setTime(d.getTime() + (7*24*60*60*1000));
+                document.cookie = "todo_list=" + JSON.stringify(tasks) + ";expires=" + d.toUTCString() + ";path=/";
+            }
+
+            function loadFromCookies() {
+                const name = "todo_list=";
+                const decodedCookie = decodeURIComponent(document.cookie);
+                const ca = decodedCookie.split(';');
+                let cookieData = "";
+
+                for(let i = 0; i < ca.length; i++) {
+                    let c = ca[i].trim();
+                    if (c.indexOf(name) == 0) {
+                        cookieData = c.substring(name.length, c.length);
+                    }
+                }
+
+                if (cookieData !== "") {
+                    const tasks = JSON.parse(cookieData);
+                    tasks.reverse().forEach(function(task) {
+                        addToDom(task);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

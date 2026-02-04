@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f7f7f7; }
+        #ft_list { 
+            margin: 20px auto; 
+            width: 300px; 
+            min-height: 50px;
+            background: white;
+            padding: 10px;
+            border: 2px solid #333;
+        }
+        .todo-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: #eee;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            word-wrap: break-word;
+        }
+        .todo-item:hover { background: #ffdada; }
+        button { padding: 10px 20px; cursor: pointer; font-size: 16px; }
+    </style>
+</head>
+<body>
+
+    <h1>My To Do List</h1>
+    <button id="newBtn">New</button>
+    
+    <div id="ft_list"></div>
+
+    <script>
+        const ft_list = document.getElementById('ft_list');
+        const newBtn = document.getElementById('newBtn');
+
+        window.onload = function() {
+            const cookies = document.cookie.split('; ');
+            const todoCookie = cookies.find(row => row.startsWith('todo='));
+            if (todoCookie) {
+                const data = JSON.parse(decodeURIComponent(todoCookie.split('=')[1]));
+                data.forEach(text => addTodo(text, false));
+            }
+        };
+
+        function saveToCookie() {
+            const todos = [];
+            document.querySelectorAll('.todo-item').forEach(item => {
+                todos.push(item.innerText);
+            });
+            document.cookie = "todo=" + encodeURIComponent(JSON.stringify(todos)) + ";path=/;max-age=" + (7*24*60*60);
+        }
+
+        function addTodo(text, shouldSave = true) {
+            if (!text || text.trim() === "") return;
+
+            const div = document.createElement('div');
+            div.className = 'todo-item';
+            div.innerText = text;
+
+            div.onclick = function() {
+                if (confirm("Do you want to remove this TO DO?")) {
+                    this.remove();
+                    saveToCookie();
+                }
+            };
+
+            ft_list.insertBefore(div, ft_list.firstChild);
+            
+            if (shouldSave) saveToCookie();
+        }
+
+        newBtn.onclick = function() {
+            const newTodo = prompt("Enter your new TO DO:");
+            if (newTodo && newTodo.trim() !== "") {
+                addTodo(newTodo);
+            }
+        };
+    </script>
+
+</body>
+</html>

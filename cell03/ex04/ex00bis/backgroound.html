@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex00bis - jQuery Backgroound</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="backgroound.css">
+</head>
+<body>
+
+    <button id="btn">Click me!</button>
+
+    <script>
+        $(document).ready(function() {
+            $('#btn').click(function() {
+                const r = Math.floor(Math.random() * 256);
+                const g = Math.floor(Math.random() * 256);
+                const b = Math.floor(Math.random() * 256);
+                const color = `rgb(${r}, ${g}, ${b})`;
+
+                $('body').css('background-color', color);
+            });
+        });
+    </script>
+
+</body>
+</html>
