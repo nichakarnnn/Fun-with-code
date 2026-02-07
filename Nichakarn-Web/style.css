@@ -1,149 +1,95 @@
-html {
-    scroll-behavior: smooth; /* ทำให้หน้าจอเลื่อนนุ่มๆเวลากดเมนู */
-}
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    padding-top: 80px;
+    background-color: #f8f9fa;
     color: #333;
-    font-weight: 300; /* ฟอนต์บาง */
+    font-family: 'Inter', sans-serif;
 }
 
-/* หัวข้อให้หนาขึ้นนิดนึง  */
-h1, h2, h3 {
-    font-weight: 600;
-    letter-spacing: -0.5px;
+.custom-navbar {
+    background-color: #dfded8 !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.section-padding {
-    padding: 80px 0;
-}
+.navbar-brand { font-weight: 800 !important; color: #000 !important; }
 
-/* การ์ดในเว็บ */
-.card {
-    background-color: #ffffff;
-    border: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+.section-padding { padding: 80px 0; }
 
-/* ABOUT SECTION (ส่วนข้อมูลโปรไฟล์)
-/* รูปโปรไฟล์วงกลมชิดซ้าย */
-.profile-img-left {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid #00ced1; /* ขอบสีฟ้าสว่าง */
-    padding: 2px;
-}
-
-/* ลิงก์ Login สีน้ำเงินเข้ม */
-.text-primary-dark {
-    color: #003366 !important;
-    text-decoration: underline;
-    font-weight: 400;
-}
-
-#about .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-}
-
-/* SHOWCASE SECTION (ส่วนทักษะ/Skill) */
-#showcase .card {
-    border-radius: 25px;
-}
-
-#showcase .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
-}
-
-#showcase h3 {
-    font-weight: 500;
-}
-
-#showcase ul {
-    list-style-position: inside;
-    padding: 0;
-}
-
-#showcase li {
-    font-weight: 300;
-    margin-bottom: 10px;
-}
-
-/* CONTACT SECTION (ส่วนติดต่อด้านล่าง) */
-#contact {
-    background-color: #1a1d20 !important; /* พื้นหลังส่วน Contact สีเข้ม */
-}
-
-/* กล่อง Contact สีดำเทาเข้ม */
-.contact-card {
-    background-color: #212529 !important;
-    border: 1px solid #343a40 !important;
-    transition: 0.3s;
-}
-
-.contact-card:hover {
-    border-color: #00ced1 !important; /* เปลี่ยนขอบเป็นสีฟ้าเวลาชี้ */
-}
-
-/* ตกแต่งรูปไอคอน (Gmail, GitHub, IG) ให้เป็นวงกลม */
-.contact-icon-img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    background: white; 
-    padding: 5px;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 206, 209, 0.3);
-}
-
-/* ตัวหนังสือใน Contact ให้ผอมบาง */
-#contact span, 
-#contact a, 
-#contact p {
-    font-weight: 300;
-}
-
-/* สีลิงก์ในส่วน Contact (สีฟ้า) */
-.contact-link, .text-info {
-    color: #00ced1 !important;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.contact-link:hover, .text-info:hover {
-    color: #fff !important;
-    text-decoration: underline;
-}
-
-/* FOOTER */
-.border-secondary {
-    border-color: rgba(255, 255, 255, 0.1) !important;
-}
-/* ตกแต่งรูปโปรไฟล์เมื่อวางไว้ด้านบน */
-.profile-img-top {
-    width: 150px;  /* ปรับขนาดให้ใหญ่ขึ้นเล็กน้อยเพื่อให้เด่น */
+/* --- About --- */
+.profile-img {
+    width: 150px;
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid #00ced1; /* เส้นขอบสีฟ้าตามสไตล์เดิม */
-    padding: 3px;
-    display: block; /* มั่นใจว่าจัดกึ่งกลางได้ด้วย mx-auto */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 5px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* ปรับแต่งข้อความใน Card ให้ดูอ่านง่ายขึ้น */
-#about .card {
-    border-radius: 30px; /* เพิ่มความมนให้เข้ากับรูปวงกลม */
+.text-accent { color: #690797; font-weight: 600; letter-spacing: 1px; }
+
+.small-text { font-size: 0.95rem; line-height: 1.8; }
+
+/* --- Showcase & Skills --- */
+.skill-card { border-radius: 20px; border: none; }
+
+.skill-tag {
+    background: #f1f3f5;
+    color: #495057;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
 }
 
-#about p.lead {
-    font-weight: 300;
-    color: #555;
-    max-width: 80%; /* บีบข้อความไม่ให้แผ่กว้างเกินไป จะทำให้อ่านง่ายขึ้น */
-    margin-left: auto;
-    margin-right: auto;
+/* --- Projects --- */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* --- Modern Contact Card --- */
+.contact-modern-card {
+    background-color: #212529;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 200px;
+}
+
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-left: 10%; /* จัดวางให้ลิสต์อยู่กลางๆการ์ด */
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ล็อคขนาดไอคอนให้จิ๋วหลิว */
+.contact-mini-icon {
+    width: 20px !important;
+    height: 20px !important;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* ปรับสีไอคอนสีดำให้สว่างขึ้นบนพื้นหลังมืด */
+.github-white {
+    filter: invert(1) brightness(1.5);
+}
+
+/* ลิ้งตัวหนังสือเล็กและบาง */
+.contact-link {
+    color: #00ced1 !important;
+    text-decoration: none;
+    font-size: 0.85rem; /* ตัวเล็ก */
+    font-weight: 300;   /* ตัวบาง */
+    transition: 0.3s;
+}
+
+.contact-link:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
 }
